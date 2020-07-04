@@ -18,7 +18,7 @@ nunjucks.configure("layouts/views", {
     noCache: true //não guarda versões dos dados então sempre puxa do servidor
 })
 
-//*********ROTAS
+//********* ROTAS ***********
 
 //index
 server.get('/',function(req,res){
@@ -49,11 +49,12 @@ server.get('/about',function(req,res){
 //detalhes receita
 server.get('/recipe/:index',function(req,res){
     const recipeIndex = req.params.index;
-
-    return res.render('recipe_details',{recipes,recipeIndex})
+    const recipe = recipes[recipeIndex]
+    return res.render('recipe_details',{recipe})
+    // return res.render('recipe_details',{recipes, recipeIndex})
 })
 
 
 server.listen(5000,function(){
-    console.log("server running")
+    console.log("Server running, LocalHost 5000")
 })
